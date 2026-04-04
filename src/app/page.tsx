@@ -1,6 +1,9 @@
 import Image from "next/image";
 import { withBasePath } from "@/lib/site";
 
+const latestDmgUrl =
+  "https://github.com/daimon-hq/release/releases/latest/download/DAIMON.dmg";
+
 /* ─── Inline SVG Icons ─── */
 function ShieldIcon({ className }: { className?: string }) {
   return (
@@ -444,7 +447,9 @@ function DownloadSection() {
         </p>
         <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
           <a
-            href="#"
+            href={latestDmgUrl}
+            target="_blank"
+            rel="noopener noreferrer"
             id="download-dmg-btn"
             className="group inline-flex items-center gap-3 rounded-full bg-accent px-8 py-4 text-lg font-semibold text-background transition-all hover:bg-accent-light hover:shadow-2xl hover:shadow-accent/30 hover:scale-105 active:scale-100"
           >
