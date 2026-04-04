@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { withBasePath } from "@/lib/site";
 
 /* ─── Inline SVG Icons ─── */
 function ShieldIcon({ className }: { className?: string }) {
@@ -100,7 +101,7 @@ function Navbar() {
     <nav className="fixed top-0 left-0 right-0 z-50 border-b border-border/50 bg-background/80 backdrop-blur-xl">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
         <a href="#" className="flex items-center gap-3 group">
-          <Image src="/logo.png" alt="DAIMON" width={32} height={32} className="transition-transform group-hover:scale-110" />
+          <Image src={withBasePath("/logo.png")} alt="DAIMON" width={32} height={32} className="transition-transform group-hover:scale-110" />
           <span className="text-lg font-semibold tracking-tight">DAIMON</span>
         </a>
         <div className="hidden items-center gap-8 text-sm text-muted md:flex">
@@ -137,7 +138,7 @@ function Hero() {
         {/* Logo */}
         <div className="animate-fade-in-up-delay-1 mb-10">
           <Image
-            src="/logo.png"
+            src={withBasePath("/logo.png")}
             alt="DAIMON Logo"
             width={120}
             height={120}
@@ -425,7 +426,7 @@ function DownloadSection() {
 
       <div className="relative z-10 mx-auto max-w-3xl px-6 text-center">
         <Image
-          src="/logo.png"
+          src={withBasePath("/logo.png")}
           alt="DAIMON"
           width={80}
           height={80}
@@ -466,7 +467,7 @@ function Footer() {
     <footer className="border-t border-border py-12">
       <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 px-6 md:flex-row">
         <div className="flex items-center gap-3">
-          <Image src="/logo.png" alt="DAIMON" width={24} height={24} />
+          <Image src={withBasePath("/logo.png")} alt="DAIMON" width={24} height={24} />
           <span className="text-sm text-muted">
             &copy; {new Date().getFullYear()} DAIMON. Built with care for safe AI agent execution.
           </span>
