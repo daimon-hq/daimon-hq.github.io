@@ -1,8 +1,7 @@
 import Image from "next/image";
 import { withBasePath } from "@/lib/site";
 
-const latestDmgUrl =
-  "https://github.com/daimon-hq/release/releases/latest/download/DAIMON.dmg";
+const releasePageUrl = "https://github.com/daimon-hq/release/releases";
 
 /* ─── Inline SVG Icons ─── */
 function ShieldIcon({ className }: { className?: string }) {
@@ -447,17 +446,20 @@ function DownloadSection() {
         </p>
         <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
           <a
-            href={latestDmgUrl}
+            href={releasePageUrl}
             target="_blank"
             rel="noopener noreferrer"
             id="download-dmg-btn"
             className="group inline-flex items-center gap-3 rounded-full bg-accent px-8 py-4 text-lg font-semibold text-background transition-all hover:bg-accent-light hover:shadow-2xl hover:shadow-accent/30 hover:scale-105 active:scale-100"
           >
             <AppleIcon className="h-5 w-5" />
-            Download .dmg
+            Choose Release Version
             <DownloadIcon className="h-5 w-5 transition-transform group-hover:translate-y-0.5" />
           </a>
         </div>
+        <p className="mt-4 text-sm text-muted-foreground">
+          You'"'"'ll land on the release page and can pick the version you want to download.
+        </p>
         <p className="mt-6 text-sm text-muted-foreground">
           macOS 13+ (Ventura or later) &middot; Apple Silicon &amp; Intel
         </p>
