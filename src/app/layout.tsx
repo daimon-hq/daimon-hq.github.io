@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "DAIMON — Give AI Local Access. Safely.",
   description:
-    "DAIMON is an OS-level sandboxed MCP server that lets AI agents work on your local files with kernel-enforced security boundaries. No containers, no risk.",
+    "DAIMON provides an OS-level sandbox for AI agents so they can safely run in your local environment with kernel-enforced security boundaries. No containers, no risk.",
   keywords: [
     "MCP",
     "AI Agent",
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "DAIMON — Give AI Local Access. Safely.",
     description:
-      "OS-level sandboxed MCP server for AI agents. Kernel-enforced file and network boundaries without heavy containers.",
+      "OS-level sandbox for AI agents. Kernel-enforced file and network boundaries without heavy containers.",
     type: "website",
   },
 };

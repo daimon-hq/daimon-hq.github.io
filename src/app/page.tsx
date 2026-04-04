@@ -157,8 +157,8 @@ function Hero() {
 
         {/* Subtitle */}
         <p className="animate-fade-in-up-delay-2 mx-auto mb-10 max-w-2xl text-lg leading-relaxed text-muted md:text-xl">
-          DAIMON runs AI agents directly on your machine with{" "}
-          <span className="text-foreground font-medium">OS-kernel sandbox enforcement</span>.
+          DAIMON provides an OS-kernel-enforced sandbox so AI agents can run safely on your local machine with{" "}
+          <span className="text-foreground font-medium">strong execution boundaries</span>.
           No Docker overhead. No risk of permanent damage to your data.
         </p>
 
