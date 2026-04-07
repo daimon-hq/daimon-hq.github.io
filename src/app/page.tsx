@@ -164,7 +164,7 @@ function Hero() {
             className="group inline-flex items-center gap-3 rounded-full bg-accent px-8 py-4 text-lg font-semibold text-background transition-all hover:bg-accent-light hover:shadow-2xl hover:shadow-accent/30 hover:scale-105 active:scale-100"
           >
             <AppleIcon className="h-5 w-5" />
-            Download for macOS
+            Download Desktop App
             <DownloadIcon className="h-5 w-5 transition-transform group-hover:translate-y-0.5" />
           </a>
           <a
@@ -351,7 +351,7 @@ function ShowcaseSection() {
             <span className="text-muted">Visually.</span>
           </h2>
           <p className="mx-auto max-w-2xl text-lg text-muted">
-            Stop guessing with YAML configurations. DAIMON provides a beautiful, macOS-native interface to manage every aspect of your agent&apos;s sandbox.
+            Stop guessing with YAML configurations. DAIMON provides a polished desktop interface on macOS and Linux to manage every aspect of your agent&apos;s sandbox.
           </p>
         </div>
 
@@ -524,15 +524,15 @@ function DownloadSection() {
             className="group inline-flex items-center gap-3 rounded-full bg-accent px-8 py-4 text-lg font-semibold text-background transition-all hover:bg-accent-light hover:shadow-2xl hover:shadow-accent/30 hover:scale-105 active:scale-100"
           >
             <AppleIcon className="h-5 w-5" />
-            Choose Release Version
+            Browse Releases
             <DownloadIcon className="h-5 w-5 transition-transform group-hover:translate-y-0.5" />
           </a>
         </div>
         <p className="mt-4 text-sm text-muted-foreground">
-          You'"'"'ll land on the release page and can pick the version you want to download.
+          You&apos;ll land on the release page and can choose the bundle you want, including macOS DMG and Ubuntu .deb releases.
         </p>
         <p className="mt-6 text-sm text-muted-foreground">
-          macOS 13+ (Ventura or later) &middot; Apple Silicon &amp; Intel
+          macOS 13+ (Ventura or later) &middot; Ubuntu/Debian-style Linux &middot; Apple Silicon &amp; Intel/amd64
         </p>
       </div>
     </section>

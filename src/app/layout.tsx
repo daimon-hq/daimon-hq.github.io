@@ -21,6 +21,8 @@ export const metadata: Metadata = {
     "AI Agent",
     "sandbox",
     "macOS",
+    "Linux",
+    "Ubuntu",
     "security",
     "processd",
     "DAIMON",
