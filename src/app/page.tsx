@@ -102,6 +102,7 @@ function Navbar() {
           <a href="#problem" className="transition-colors hover:text-foreground">Why DAIMON</a>
           <a href="#how-it-works" className="transition-colors hover:text-foreground">How It Works</a>
           <a href="#features" className="transition-colors hover:text-foreground">Features</a>
+          <a href="#quick-start" className="transition-colors hover:text-foreground">Quick Start</a>
           <a href="#download" className="ml-2 inline-flex items-center gap-2 rounded-full bg-accent px-4 py-2 text-sm font-medium text-background transition-all hover:bg-accent-light hover:shadow-lg hover:shadow-accent/20">
             <DownloadIcon className="h-4 w-4" />
             Download
@@ -490,6 +491,113 @@ function FeaturesSection() {
   );
 }
 
+/* ─── Quick Start Section ─── */
+function QuickStartSection() {
+  const steps = [
+    {
+      number: "01",
+      title: "Launch DAIMON Desktop",
+      description:
+        "Open the desktop app and confirm the local MCP service is running. This quick start assumes DAIMON Desktop is already managing the process for you.",
+    },
+    {
+      number: "02",
+      title: "Install the Python SDK",
+      description:
+        "Use your existing Python environment and install the published SDK package. No manual MCP client wiring is needed for the happy path.",
+    },
+    {
+      number: "03",
+      title: "Connect and make one call",
+      description:
+        "Point DaimonClient at the local endpoint, read the runtime context, and run a simple glob against the base workdir to confirm everything is live.",
+    },
+  ];
+
+  return (
+    <section id="quick-start" className="relative border-t border-border py-32">
+      <div className="absolute inset-0 grid-pattern opacity-30" />
+      <div className="relative z-10 mx-auto max-w-6xl px-6">
+        <div className="mb-16 max-w-3xl">
+          <p className="mb-3 text-sm font-medium tracking-widest text-accent uppercase">Quick Start</p>
+          <h2 className="mb-5 text-4xl font-bold tracking-tight md:text-5xl">
+            Start with the Python SDK.
+          </h2>
+          <p className="mb-4 text-lg text-muted">
+            DAIMON Desktop gives you the local runtime. <code className="rounded bg-card px-1.5 py-0.5 text-sm text-foreground">daimon-sdk</code> gives your app a typed way to use it.
+          </p>
+          <p className="quickstart-note inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm text-muted">
+            <span className="inline-block h-2 w-2 rounded-full bg-success" />
+            Assumes DAIMON Desktop is already running locally.
+          </p>
+        </div>
+
+        <div className="grid gap-8 lg:grid-cols-[1fr_1.2fr] lg:items-start">
+          <div className="space-y-4">
+            {steps.map((step) => (
+              <div key={step.number} className="quickstart-step glass-card p-6">
+                <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-accent/10 font-mono text-sm font-bold text-accent">
+                  {step.number}
+                </div>
+                <h3 className="mb-2 text-xl font-semibold">{step.title}</h3>
+                <p className="text-sm leading-relaxed text-muted">{step.description}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="quickstart-shell glass-card overflow-hidden">
+            <div className="flex items-center justify-between border-b border-border px-4 py-3">
+              <div className="flex items-center gap-2">
+                <span className="h-3 w-3 rounded-full bg-danger/60" />
+                <span className="h-3 w-3 rounded-full bg-accent/60" />
+                <span className="h-3 w-3 rounded-full bg-success/60" />
+              </div>
+              <span className="text-xs font-mono text-muted-foreground">Python SDK quick start</span>
+            </div>
+
+            <div className="grid gap-px bg-border lg:grid-cols-[0.9fr_1.1fr]">
+              <div className="quickstart-panel bg-card">
+                <div className="quickstart-panel-label">Install</div>
+                <div className="code-block border-0 rounded-none">
+                  <pre className="font-mono text-sm">
+                    <code>{`pip install daimon-sdk`}</code>
+                  </pre>
+                </div>
+              </div>
+
+              <div className="quickstart-panel bg-card">
+                <div className="quickstart-panel-label">Connect</div>
+                <div className="code-block border-0 rounded-none">
+                  <pre className="font-mono text-sm">
+                    <code>{`import asyncio
+
+from daimon_sdk import DaimonClient
+
+
+async def main() -> None:
+    async with DaimonClient("http://127.0.0.1:8080/mcp") as client:
+        runtime = await client.runtime.get_context()
+        print(runtime.base_workdir)
+
+        files = await client.files.glob(
+            "**/*.py",
+            path=runtime.base_workdir,
+        )
+        print(files.filenames[:5])
+
+
+asyncio.run(main())`}</code>
+                  </pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 /* ─── Download CTA Section ─── */
 function DownloadSection() {
   return (
@@ -572,6 +680,7 @@ export default function Home() {
         <HowItWorksSection />
         <ShowcaseSection />
         <FeaturesSection />
+        <QuickStartSection />
         <DownloadSection />
       </main>
       <Footer />
