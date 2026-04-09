@@ -532,15 +532,15 @@ function QuickStartSection() {
           </p>
         </div>
 
-        <div className="grid gap-8 lg:grid-cols-[1fr_1.2fr] lg:items-start">
+        <div className="grid gap-8 lg:grid-cols-[0.88fr_1.32fr] lg:items-start">
           <div className="space-y-4">
             {steps.map((step) => (
-              <div key={step.number} className="quickstart-step glass-card p-6">
-                <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-accent/10 font-mono text-sm font-bold text-accent">
+              <div key={step.number} className="quickstart-step glass-card p-5 lg:p-5">
+                <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-accent/10 font-mono text-sm font-bold text-accent">
                   {step.number}
                 </div>
-                <h3 className="mb-2 text-xl font-semibold">{step.title}</h3>
-                <p className="text-sm leading-relaxed text-muted">{step.description}</p>
+                <h3 className="mb-2 text-lg font-semibold lg:text-xl">{step.title}</h3>
+                <p className="text-sm leading-7 text-muted">{step.description}</p>
               </div>
             ))}
           </div>
@@ -555,8 +555,8 @@ function QuickStartSection() {
               <span className="text-xs font-mono text-muted-foreground">Python SDK quick start</span>
             </div>
 
-            <div className="grid gap-px bg-border lg:grid-cols-[0.9fr_1.1fr]">
-              <div className="quickstart-panel bg-card">
+            <div className="grid gap-px bg-border">
+              <div className="quickstart-panel quickstart-install bg-card">
                 <div className="quickstart-panel-label">Install</div>
                 <div className="code-block border-0 rounded-none">
                   <pre className="font-mono text-sm">
@@ -568,7 +568,7 @@ function QuickStartSection() {
               <div className="quickstart-panel bg-card">
                 <div className="quickstart-panel-label">Connect</div>
                 <div className="code-block border-0 rounded-none">
-                  <pre className="font-mono text-sm">
+                  <pre className="quickstart-code font-mono text-sm">
                     <code>{`import asyncio
 
 from daimon_sdk import DaimonClient
