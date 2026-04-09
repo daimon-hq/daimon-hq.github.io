@@ -103,6 +103,7 @@ function Navbar() {
           <a href="#how-it-works" className="transition-colors hover:text-foreground">How It Works</a>
           <a href="#features" className="transition-colors hover:text-foreground">Features</a>
           <a href="#quick-start" className="transition-colors hover:text-foreground">Quick Start</a>
+          <a href={withBasePath("/sdk")} className="transition-colors hover:text-foreground">SDK Docs</a>
           <a href="#download" className="ml-2 inline-flex items-center gap-2 rounded-full bg-accent px-4 py-2 text-sm font-medium text-background transition-all hover:bg-accent-light hover:shadow-lg hover:shadow-accent/20">
             <DownloadIcon className="h-4 w-4" />
             Download
@@ -176,6 +177,12 @@ function Hero() {
           >
             <XIcon className="h-5 w-5" />
             Follow on X
+          </a>
+          <a
+            href={withBasePath("/sdk")}
+            className="inline-flex items-center gap-2 rounded-full border border-accent/30 bg-accent/10 px-8 py-4 text-lg font-medium text-accent transition-all hover:border-accent/50 hover:bg-accent/15 hover:text-accent-light"
+          >
+            SDK Docs
           </a>
         </div>
       </div>
