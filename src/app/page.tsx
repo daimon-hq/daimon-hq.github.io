@@ -104,6 +104,7 @@ function Navbar() {
           <a href="#features" className="transition-colors hover:text-foreground">Features</a>
           <a href="#quick-start" className="transition-colors hover:text-foreground">Quick Start</a>
           <a href={withBasePath("/sdk")} className="transition-colors hover:text-foreground">SDK Docs</a>
+          <a href={withBasePath("/terminal")} className="transition-colors hover:text-foreground">Terminal Guide</a>
           <a href="#download" className="ml-2 inline-flex items-center gap-2 rounded-full bg-accent px-4 py-2 text-sm font-medium text-background transition-all hover:bg-accent-light hover:shadow-lg hover:shadow-accent/20">
             <DownloadIcon className="h-4 w-4" />
             Download
@@ -642,9 +643,16 @@ function DownloadSection() {
             Browse Releases
             <DownloadIcon className="h-5 w-5 transition-transform group-hover:translate-y-0.5" />
           </a>
+          <a
+            href={withBasePath("/terminal")}
+            className="inline-flex items-center gap-2 rounded-full border border-border px-8 py-4 text-lg font-medium text-muted transition-all hover:border-muted-foreground hover:text-foreground hover:bg-card"
+          >
+            <TerminalIcon className="h-5 w-5" />
+            Terminal Kernel Guide
+          </a>
         </div>
         <p className="mt-4 text-sm text-muted-foreground">
-          You&apos;ll land on the release page and can choose the bundle you want, including macOS DMG and Ubuntu .deb releases.
+          You&apos;ll land on the release page and can choose Desktop bundles (macOS DMG, Ubuntu .deb) or the standalone Linux kernel assets.
         </p>
         <p className="mt-6 text-sm text-muted-foreground">
           macOS 13+ (Ventura or later) &middot; Ubuntu/Debian-style Linux &middot; Apple Silicon &amp; Intel/amd64
