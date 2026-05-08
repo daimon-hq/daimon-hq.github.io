@@ -1,15 +1,8 @@
-import Image from "next/image";
 import { withBasePath } from "@/lib/site";
+import { DownloadComposeBtn } from "./download-compose-btn";
 
 const pypiUrl = "https://pypi.org/project/daimon-sdk/";
 const managerEndpoint = "http://127.0.0.1:18080";
-const managerComposeUrl = withBasePath("/scripts/compose.manager.release.yaml");
-
-export const metadata = {
-  title: "DAIMON SDK Docs",
-  description:
-    "Detailed Python documentation for daimon-sdk, including sandbox manager lifecycle, runtime context, file APIs, upload/download, exec, sessions, and web helpers.",
-};
 
 /* ─── Sidebar navigation structure ─── */
 const navGroups = [
@@ -90,7 +83,7 @@ function ParamTable({
             <tr key={p.name} className="border-b border-border last:border-0">
               <td className="px-4 py-2.5 font-mono text-accent">{p.name}</td>
               <td className="px-4 py-2.5 font-mono text-muted">{p.type}</td>
-              <td className="px-4 py-2.5 font-mono text-muted-foreground">{p.default ?? "—"}</td>
+              <td className="px-4 py-2.5 font-mono text-muted-foreground">{p.default ?? "\u2014"}</td>
               <td className="px-4 py-2.5 text-muted">{p.description}</td>
             </tr>
           ))}
@@ -102,6 +95,7 @@ function ParamTable({
 
 /* ─── Helper components ─── */
 function MethodSignature({
+  name,
   signature,
   description,
   params,
@@ -185,7 +179,7 @@ function DocsNavbar() {
     <nav className="fixed top-0 left-0 right-0 z-50 border-b border-border/50 bg-background/85 backdrop-blur-xl">
       <div className="mx-auto flex h-14 max-w-7xl items-center justify-between px-6">
         <a href={withBasePath("/")} className="flex items-center gap-3 group">
-          <Image src={withBasePath("/logo.png")} alt="DAIMON" width={22} height={22} className="transition-transform group-hover:scale-110" />
+          <img src={withBasePath("/logo.png")} alt="DAIMON" className="h-5 w-5 transition-transform group-hover:scale-110" />
           <div className="leading-tight">
             <div className="text-xs font-semibold tracking-[0.22em] text-accent uppercase">DAIMON</div>
           </div>
@@ -302,9 +296,10 @@ export default function SdkDocsPage() {
                 This starts <code className="rounded bg-card px-1.5 py-0.5 font-mono text-accent">processd-sandbox-manager</code>,
                 <code className="rounded bg-card px-1.5 py-0.5 font-mono text-accent">nsjail</code>, and sandbox MCP workers on demand.
               </p>
-              <CodeBlock>{`curl -LO ${managerComposeUrl}
-docker compose -f compose.manager.yaml up -d
-curl -i ${managerEndpoint}/health`}</CodeBlock>
+              <DownloadComposeBtn />
+              <CodeBlock>
+                {`docker compose -f compose.manager.release.yaml up -d\ncurl -i ${managerEndpoint}/health`}
+              </CodeBlock>
               <Note
                 title="Docker permissions"
                 text="The release compose defaults to cgroup_required. It needs cgroup v2 mounted writable plus SYS_ADMIN, SETUID, SETGID, SETFCAP, and DAC_OVERRIDE so nsjail can create per-sandbox namespaces and cgroups. If your local Docker environment cannot provide those permissions, use a best-effort manager compose from processd-standalone or run the manager with adjusted limits."
