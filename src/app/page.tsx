@@ -2,6 +2,7 @@ import Image from "next/image";
 import { withBasePath } from "@/lib/site";
 
 const releasePageUrl = "https://github.com/daimon-hq/release/releases";
+const managerComposeUrl = "https://github.com/daimon-hq/release/releases/latest/download/compose.manager.yaml";
 
 /* ─── Inline SVG Icons ─── */
 function ShieldIcon({ className }: { className?: string }) {
@@ -504,9 +505,9 @@ function QuickStartSection() {
   const steps = [
     {
       number: "01",
-      title: "Launch DAIMON Desktop",
+      title: "Launch the sandbox manager",
       description:
-        "Open the desktop app and confirm the local MCP service is running. This quick start assumes DAIMON Desktop is already managing the process for you.",
+        "Start processd-sandbox-manager and confirm the manager HTTP endpoint is reachable. The SDK can then create a fresh sandbox for each workflow.",
     },
     {
       number: "02",
@@ -516,9 +517,9 @@ function QuickStartSection() {
     },
     {
       number: "03",
-      title: "Connect and make one call",
+      title: "Create a sandbox and make one call",
       description:
-        "Point DaimonClient at the local endpoint, read the runtime context, and run a simple glob against the base workdir to confirm everything is live.",
+        "Point DaimonManagerClient at the manager endpoint, enter a sandbox context, and call the sandbox MCP tools through typed APIs.",
     },
   ];
 
@@ -532,11 +533,11 @@ function QuickStartSection() {
             Start with the Python SDK.
           </h2>
           <p className="mb-4 text-lg text-muted">
-            DAIMON Desktop gives you the local runtime. <code className="rounded bg-card px-1.5 py-0.5 text-sm text-foreground">daimon-sdk</code> gives your app a typed way to use it.
+            DAIMON manager gives your app isolated sandboxes. <code className="rounded bg-card px-1.5 py-0.5 text-sm text-foreground">daimon-sdk</code> gives your app a typed way to create and use them.
           </p>
           <p className="quickstart-note inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm text-muted">
             <span className="inline-block h-2 w-2 rounded-full bg-success" />
-            Assumes DAIMON Desktop is already running locally.
+            If you already have an MCP URL and token, use DaimonClient directly.
           </p>
         </div>
 
@@ -565,10 +566,14 @@ function QuickStartSection() {
 
             <div className="grid gap-px bg-border">
               <div className="quickstart-panel quickstart-install bg-card">
-                <div className="quickstart-panel-label">Install</div>
+                <div className="quickstart-panel-label">Start Manager</div>
                 <div className="code-block border-0 rounded-none">
                   <pre className="font-mono text-sm">
-                    <code>{`pip install daimon-sdk`}</code>
+                    <code>{`curl -LO ${managerComposeUrl}
+docker compose -f compose.manager.yaml up -d
+curl -i http://127.0.0.1:18080/health
+
+pip install daimon-sdk`}</code>
                   </pre>
                 </div>
               </div>
@@ -579,19 +584,17 @@ function QuickStartSection() {
                   <pre className="quickstart-code font-mono text-sm">
                     <code>{`import asyncio
 
-from daimon_sdk import DaimonClient
+from daimon_sdk import DaimonManagerClient
 
 
 async def main() -> None:
-    async with DaimonClient("http://127.0.0.1:8080/mcp") as client:
-        runtime = await client.runtime.get_context()
-        print(runtime.base_workdir)
+    async with DaimonManagerClient("http://127.0.0.1:18080") as manager:
+        async with manager.sandbox() as sandbox:
+            runtime = await sandbox.runtime.get_context()
+            print(runtime.base_workdir)
 
-        files = await client.files.glob(
-            "**/*.py",
-            path=runtime.base_workdir,
-        )
-        print(files.filenames[:5])
+            result = await sandbox.exec.bash("python3 --version")
+            print(result.display_text)
 
 
 asyncio.run(main())`}</code>
