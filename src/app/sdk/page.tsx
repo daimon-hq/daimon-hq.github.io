@@ -298,7 +298,12 @@ export default function SdkDocsPage() {
               </p>
               <DownloadComposeBtn />
               <CodeBlock>
-                {`docker compose -f compose.manager.release.yaml up -d\ncurl -i ${managerEndpoint}/health`}
+                {`# Replace LAN_IP with your host machine's actual LAN IP (e.g. 192.168.1.100)
+# Do NOT use 0.0.0.0 — the MCP workers bind inside nsjail and won't route correctly
+# Alternatively, uncomment network_mode: host in the compose file to bypass Docker NAT
+PROCESSD_MANAGER_PUBLIC_MCP_HOST=LAN_IP docker compose -f compose.manager.release.yaml up -d
+
+curl -i ${managerEndpoint}/health`}
               </CodeBlock>
               <Note
                 title="Docker permissions"

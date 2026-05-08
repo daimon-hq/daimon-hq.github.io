@@ -20,6 +20,11 @@ services:
     pids_limit: 4096
     extra_hosts:
       - "host.docker.internal:host-gateway"
+    # Uncomment network_mode below and remove the ports section to use host networking.
+    # This bypasses Docker NAT, making sandbox MCP endpoints directly reachable via
+    # the host's LAN IP without setting PROCESSD_MANAGER_PUBLIC_MCP_HOST.
+    # Requires Docker host networking support (Linux only, not available on Docker Desktop for macOS).
+    # network_mode: host
     ports:
       - "18080:18080"
       - "19000-19999:19000-19999"
