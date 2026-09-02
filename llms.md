@@ -1,6 +1,6 @@
 ---
 title: Introduction
-description: MCP control of a remote Linux terminal, with the same tool surface as Claude Code.
+description: Rust MCP sandbox for AI agents. Isolate Linux workspaces with nsjail and drive them from Claude Code or Cursor.
 ---
 
 DAIMON exposes an MCP server whose tools line up with Claude Code's built-ins — `Bash`, `Read`, `Write`, `Edit`, `Glob`, `Grep`, `WebFetch`, plus a PTY session. Point an MCP client at a Linux host and the agent drives that machine's terminal as if the tools were local.
