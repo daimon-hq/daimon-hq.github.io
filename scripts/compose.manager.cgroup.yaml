@@ -1,0 +1,12 @@
+services:
+  processd-sandbox-manager:
+    cgroup: host
+    cap_add:
+      - DAC_OVERRIDE
+    environment:
+      PROCESSD_MANAGER_LIMITS_MODE: "required"
+    volumes:
+      - type: bind
+        source: /sys/fs/cgroup
+        target: /sys/fs/cgroup
+        read_only: false

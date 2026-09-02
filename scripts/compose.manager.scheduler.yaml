@@ -1,0 +1,26 @@
+services:
+  processd-sandbox-manager:
+    environment:
+      PROCESSD_MANAGER_NODE_ID: local-manager
+      PROCESSD_MANAGER_AUTH_TOKEN: ""
+
+  processd-scheduler:
+    image: ghcr.io/daimon-hq/processd-sandbox-manager:latest
+    init: true
+    depends_on:
+      - processd-sandbox-manager
+    ports:
+      - "18081:18081"
+    environment:
+      PROCESSD_SCHEDULER_CONFIG_FILE: /etc/processd-scheduler.yaml
+      PROCESSD_SCHEDULER_AUTH_TOKEN: ""
+      PROCESSD_SCHEDULER_ID_SIGNING_KEY: local-development-scheduler-signing-key
+    command: ["/usr/local/bin/processd-scheduler"]
+    volumes:
+      - ./scheduler-config.local.yaml:/etc/processd-scheduler.yaml:ro
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://127.0.0.1:18081/health"]
+      interval: 1s
+      timeout: 5s
+      retries: 30
+      start_period: 2s
