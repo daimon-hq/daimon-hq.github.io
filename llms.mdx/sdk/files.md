@@ -8,17 +8,16 @@ All methods return typed result objects.
 ## FilesAPI.read
 
 ```python
-async files.read(file_path, *, offset=None, limit=None, pages=None) -> ReadResult
+async files.read(file_path, *, offset=None, limit=None) -> ReadResult
 ```
 
-Read a file from the sandbox filesystem. Supports text, image, and multi-page content.
+Read a file from the sandbox filesystem. Supports UTF-8 text, images, and office/PDF documents converted to Markdown. Content larger than `MCP_READ_INLINE_OUTPUT_MAX_CHARS` returns an error unless you pass `limit`. Later Reads of the same converted bytes reuse a cached conversion.
 
 | Parameter | Type | Default | Description |
 | --- | --- | --- | --- |
 | `file_path` | `str` | | Path to the file. |
-| `offset` | `int \| None` | `None` | Starting line for text files. |
-| `limit` | `int \| None` | `None` | Max lines to read. |
-| `pages` | `str \| None` | `None` | Page range for PDFs (e.g. `'1-5'`). |
+| `offset` | `int \| None` | `None` | Starting line for text and converted documents. |
+| `limit` | `int \| None` | `None` | Max lines to read. Required when the file or converted Markdown exceeds the inline size limit. |
 
 ```python
 read = await client.files.read("/tmp/demo.txt")

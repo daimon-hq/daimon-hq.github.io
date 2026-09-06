@@ -15,7 +15,7 @@ description: SDK exceptions and typed result models.
 
 ## Models
 
-- `ReadResult`, `ReadTextFile`, `ReadImageFile`, `ReadPartsFile`
+- `ReadResult`, `ReadTextFile`, `ReadImageFile`
 - `WriteResult`
 - `EditResult`
 - `GlobResult`

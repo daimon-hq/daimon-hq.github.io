@@ -44,7 +44,7 @@ Other clients, cluster, and desktop URLs: [Connect](/connect). Other distros, Ta
 | Tool | Role |
 | --- | --- |
 | `Bash` | Run a shell command; long jobs can move to the background. |
-| `Read` / `Write` / `Edit` | Read, write, and patch files (text, images, PDF pages). |
+| `Read` / `Write` / `Edit` | Read, write, and patch files (text, images, office/PDF Markdown). |
 | `Glob` / `Grep` | Find files by pattern; search contents with ripgrep. |
 | `WebFetch` | Fetch a URL through the sandbox instead of shell `curl`. |
 | `exec_command` / `write_stdin` | Interactive PTY session when you need a real TTY. |

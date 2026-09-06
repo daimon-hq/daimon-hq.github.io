@@ -38,6 +38,9 @@ PROCESSD_TOKEN=<random hex>
 | `MCP_BASH_MAX_TIMEOUT_MS` | `600000` | Hard max timeout. |
 | `MCP_WEB_FETCH_DEFAULT_TIMEOUT_MS` | `30000` | `WebFetch` timeout. |
 | `MCP_WEB_FETCH_DEFAULT_MAX_BYTES` | `2 MiB` | `WebFetch` body cap. |
+| `MCP_BASH_INLINE_OUTPUT_MAX_CHARS` | `30000` | `Bash` stdout+stderr above this is saved under `.processd/bash`. |
+| `MCP_READ_INLINE_OUTPUT_MAX_CHARS` | `30000` | UTF-8 files and converted office/PDF Markdown above this must be read with `limit`. |
+| `MCP_READ_OUTPUT_DIR` | `.processd/read` | Internal cache of converted Markdown (`<sha256>-<basename>.md`). |
 
 `PROCESSD_ENV_*` copies into the command environment (prefix stripped). Example: `PROCESSD_ENV_TERM=linux` becomes `TERM=linux` inside `Bash`.
 
