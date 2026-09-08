@@ -3,7 +3,7 @@ title: Python SDK
 description: Typed async Python SDK for DAIMON sandbox manager. Create sandboxes and call file, exec, web, and raw MCP APIs.
 ---
 
-`daimon-sdk` **v0.6.0** wraps the MCP tool surface exposed by `processd-mcp` as grouped Python APIs such as `client.files.read()` and `client.exec.start_session()`.
+`daimon-sdk` **v0.6.1** wraps the MCP tool surface exposed by `processd-mcp` as grouped Python APIs such as `client.files.read()` and `client.exec.start_session()`.
 
 Requires Python 3.12+. The SDK uses httpx for HTTP transport and supports both manager-backed and direct MCP connections.
 
